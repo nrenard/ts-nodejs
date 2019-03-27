@@ -14,13 +14,19 @@ class UserController {
       return res.json({ error: 'Email not found' })
     }
 
+    const user = await User.findOne({ email });
+
+    if (user) {
+      return res.json({ error: "User already exists." })
+    }
+
     if (!firstName) {
       return res.json({ error: 'FirstName not found' })
     }
 
-    const user = await User.create(req.body)
+    const newUser = await User.create(req.body)
     return res.json({
-      user, fullName: user.fullName()
+      newUser, fullName: newUser.fullName()
     })
   }
 }

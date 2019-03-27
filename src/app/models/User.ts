@@ -10,13 +10,16 @@ interface UserInterface extends Document {
 const UserShema = new Schema({
   email: {
     type: String,
-    required: true
+    required: true,
   },
   firstName: {
     type: String,
     required: true
   },
-  lastName: String
+  lastName:  {
+    type: String,
+    required: true
+  }
 }, { timestamps: true })
 
 UserShema.methods.fullName = function (): string {
